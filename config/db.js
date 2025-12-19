@@ -59,7 +59,10 @@ try {
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
-        connectTimeout: 2000
+        connectTimeout: 20000, // Increase timeout significantly
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
 
     // Test Connectio
