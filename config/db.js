@@ -62,7 +62,7 @@ try {
         connectTimeout: 2000
     });
 
-    // Test Connection
+    // Test Connectio
     pool.getConnection((err, connection) => {
         if (err) {
             console.error("❌ MySQL Connection Failed:", err.message);
