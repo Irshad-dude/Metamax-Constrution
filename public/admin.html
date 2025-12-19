@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MetaMax Construction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-wrapper">
+        <div class="login-card">
+            <h2>Admin Login</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" id="username" class="form-input" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-input" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard-layout" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-helmet-safety text-orange"></i> MetaMax
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" onclick="return false;">
+                    <i class="fa-solid fa-gauge"></i> Dashboard
+                </a>
+                <a href="index.html" target="_blank" class="nav-item">
+                    <i class="fa-solid fa-globe"></i> View Website
+                </a>
+                <button id="logout-btn" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <h1 class="page-title">Overview</h1>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="search-input" placeholder="Search projects or sectors...">
+                </div>
+            </div>
+
+            <!-- Analytics -->
+            <div class="analytics-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-building"></i></div>
+                    <div class="stat-info">
+                        <h4>Total Projects</h4>
+                        <p id="stat-projects">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <div class="stat-info">
+                        <h4>Active Sectors</h4>
+                        <p id="stat-sectors">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls-bar">
+                <div class="pill-tabs">
+                    <button class="pill-tab active" id="tab-projects">Projects</button>
+                    <button class="pill-tab" id="tab-sectors">Sectors</button>
+                </div>
+                <button id="btn-add-new" class="btn-primary">
+                    <i class="fa-solid fa-plus"></i> Add New Item
+                </button>
+            </div>
+
+            <!-- Upload / Edit Form (Hidden by default) -->
+            <div id="upload-container" class="upload-container">
+                <div class="upload-header">
+                    <h3 id="form-title">Add New Project</h3>
+                    <button id="cancel-upload" class="btn-icon"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="upload-form">
+                    <input type="hidden" id="edit-id"> <!-- Hidden ID for editing -->
+                    <div class="upload-grid">
+                        <!-- Left: Image -->
+                        <div class="upload-left">
+                            <div id="upload-zone" class="drop-zone">
+                                <i class="fa-solid fa-cloud-arrow-up fa-3x text-gray" style="margin-bottom: 1rem;"></i>
+                                <p class="text-white">Drag & Drop Image</p>
+                                <p class="text-gray" style="font-size: 0.8rem;">or click to browse</p>
+                                <input type="file" id="file-input" accept="image/*" style="display: none;">
+                                <img id="image-preview" class="preview-img">
+                            </div>
+                        </div>
+                        <!-- Right: Fields -->
+                        <div class="upload-right">
+                            <div class="form-group">
+                                <label>Title <span class="text-orange">*</span></label>
+                                <input type="text" id="p-title" class="form-input"
+                                    placeholder="e.g. Metro Station Phase 1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category <span class="text-orange">*</span></label>
+                                <select id="p-category" class="form-select">
+                                    <!-- Populated via JS -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea id="p-desc" class="form-textarea" rows="4"
+                                    placeholder="Enter details..."></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
+                                <i class="fa-solid fa-floppy-disk"></i> Save Item
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List View -->
+            <h3 id="list-title" style="margin-bottom: 1.5rem;">Existing Projects</h3>
+            <div id="items-grid" class="items-grid">
+                <!-- Items injected here -->
+            </div>
+        </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
